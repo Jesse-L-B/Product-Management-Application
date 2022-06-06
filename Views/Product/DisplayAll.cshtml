@@ -1,0 +1,43 @@
+﻿@model ProductManagementSystem.Models.IndexViewModel
+
+@{
+    ViewData["Title"] = "DisplayAll";
+}
+
+<h1>Training Products and Gear <a><img src="~/NinjaKarate.gif" height="50px" /></a></h1>
+<a asp-action="Create" asp-controller="Product">Create a new Product</a>
+
+<table class ="table">
+    <thead>
+        <tr>
+            <th>
+                @*displays the heading for the column id*@
+                @Html.DisplayNameFor(model=>model.Products.Last().Id)
+            </th>
+            <th>
+                @*displays the heading for the column name*@
+                @Html.DisplayNameFor(temp=>temp.Products.Last().Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Products)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelitem=>item.Id)</td>
+                <td>@Html.DisplayFor(modelitem=>item.Name)</td>
+                 <td>
+                     <a asp-action="Details" asp-controller="Product" asp-route-id = "@item.Id">Details</a>
+                 </td>   
+                 <td>
+                     <a asp-action="Edit" asp-controller="Product" asp-route-id = "@item.Id">Edit</a>
+                 </td>   
+                 <td>
+                     <a asp-action="Delete" asp-controller="Product" asp-route-id = "@item.Id">Delete</a>
+                 </td>   
+                
+            </tr>
+        }
+    </tbody>
+
+</table>
